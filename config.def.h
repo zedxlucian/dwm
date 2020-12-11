@@ -115,6 +115,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_underscore,             7)
 	TAGKEYS(                        XK_ccedilla,               8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	{ MODKEY,		        XK_F9,     spawn,	   SHCMD("dmenumount") },
 	{ MODKEY,		        XK_F10,	   spawn,	   SHCMD("dmenuumount") },
 };
