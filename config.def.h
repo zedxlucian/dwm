@@ -70,6 +70,7 @@ static const char *emacscmd[]              = { "emacsclient", "-c","-a", "emacs"
 static const char *stigcmd[]               = { "st", "-e", "stig", NULL };
 static const char *powermenucmd[]          = { "powermenu", NULL };
 
+#include "movestack.c"
 static Key keys[] = {
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		    XK_Return, spawn,          {.v = termcmd } },
