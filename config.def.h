@@ -90,9 +90,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY,             		    XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_a,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_z,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[2]} },
@@ -109,7 +109,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_d,                      2)
 	TAGKEYS(                        XK_f,                      3)
 	TAGKEYS(                        XK_g,                      4)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
 };
 
 /* button definitions */
