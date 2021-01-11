@@ -5,8 +5,8 @@ static unsigned int borderpx  = 2;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 0;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=12:style=Medium" };
+static const char dmenufont[]       = "monospace:size=12:Medium";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -27,11 +27,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "lxappearance",  "Lxappearance",       "Customize Look and Feel",       0,       1,           -1 },
-	{ "megasync",  "MEGAsync",       NULL,       0,       1,           -1 },
+	/* class           instance        title       tags mask     isfloating   monitor */
+	{ NULL,            "lxappearance", NULL,       0,            1,           -1 },
+	{ NULL,            "megasync",     NULL,       0,            1,           -1 },
+	{ NULL,            "bitwarden",    NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
