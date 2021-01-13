@@ -5,8 +5,8 @@ static unsigned int borderpx  = 2;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 0;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12:style=Medium" };
-static const char dmenufont[]       = "monospace:size=12:Medium";
+static const char *fonts[]          = { "monospace:size=10:style=Medium" };
+static const char dmenufont[]       = "monospace:size=10:Medium";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -14,9 +14,9 @@ static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
 static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+	   /*               fg           bg           border   */
+	   [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+	   [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
@@ -30,7 +30,11 @@ static const Rule rules[] = {
 	/* class           instance        title       tags mask     isfloating   monitor */
 	{ NULL,            "lxappearance", NULL,       0,            1,           -1 },
 	{ NULL,            "megasync",     NULL,       0,            1,           -1 },
-	{ NULL,            "bitwarden",    NULL,       0,            1,           -1 },
+	{ NULL,            "mpv",          NULL,       0,            1,           -1 },
+	{ NULL,            "bitwarden",    NULL,       1 << 4,       0,           -1 },
+	{ NULL,            "qutebrowser",  NULL,       1 << 1,       0,           -1 },
+	{ NULL,            "emacs",        NULL,       1 << 0,       0,           -1 },
+	{ NULL,            "spotify",      NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -60,6 +64,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *emacscmd[]  = { "emacsclient", "-c", NULL };
+static const char *togglethemecmd[]  = { "change_mode", "toggle", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -80,10 +86,15 @@ ResourcePref resources[] = {
 		{ "mfact",      	 	FLOAT,   &mfact },
 };
 
+#include <X11/XF86keysym.h>
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{0,                             XK_F1,     spawn,          SHCMD("$BROWSER") },
+	{0,                             XK_F2,     spawn,          {.v = termcmd } },
+	{0,                             XK_F3,     spawn,          {.v = emacscmd } },
+	{0,                             XK_F10,    spawn,          {.v = togglethemecmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -91,9 +102,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,             		    XK_c,      killclient,     {0} },
+	{0,             		        XK_F4,     killclient,     {0} },
 	{ MODKEY,                       XK_a,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_z,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[2]} },
@@ -110,7 +121,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_d,                      2)
 	TAGKEYS(                        XK_f,                      3)
 	TAGKEYS(                        XK_g,                      4)
-	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
+	{ MODKEY,                      XK_F4,      quit,           {0} },
 };
 
 /* button definitions */
