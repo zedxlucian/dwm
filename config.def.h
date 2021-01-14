@@ -6,7 +6,12 @@ static const int gappx        = 5;                 /* gaps between windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 0;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10:style=Medium" };
+static const char *fonts[]    = {
+	"monospace:size=10:style=Medium",
+	"Font Awesome 5 Free Solid:size=10:style=Solid",
+	"Font Awesome 5 Brands Regular:size=10:style=Regular",
+	"Font Awesome 5 Free Regular:size=10:style=Regular",
+	"Material Icons:size=10:style=Regular" };
 static const char dmenufont[]       = "monospace:size=10:Medium";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -21,7 +26,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -32,10 +37,10 @@ static const Rule rules[] = {
 	{ NULL,            "lxappearance", NULL,       0,            1,           -1 },
 	{ NULL,            "megasync",     NULL,       0,            1,           -1 },
 	{ NULL,            "mpv",          NULL,       0,            1,           -1 },
-	{ NULL,            "bitwarden",    NULL,       1 << 4,       0,           -1 },
-	{ NULL,            "qutebrowser",  NULL,       1 << 1,       0,           -1 },
 	{ NULL,            "emacs",        NULL,       1 << 0,       0,           -1 },
+	{ NULL,            "qutebrowser",  NULL,       1 << 1,       0,           -1 },
 	{ NULL,            "spotify",      NULL,       1 << 2,       0,           -1 },
+	{ NULL,            "bitwarden",    NULL,       1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
